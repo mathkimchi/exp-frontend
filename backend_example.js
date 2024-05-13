@@ -150,6 +150,6 @@ app.post("/project-submit", (req, res) => {
     // console.log(form);
 });
 
-app.listen(8000, () => {
-    console.log('Server running on http://127.0.0.1:8000');
+app.listen(5624, () => {
+    console.log('Server running on http://127.0.0.1:5624');
 });
