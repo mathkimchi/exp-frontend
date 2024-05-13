@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Exp Project Upload</title>
+
+    <script>
+        school_count = 2; // because start with peddie
+        researcher_count = 1;
+
+        function addSchool() {
+            new_field = document.createElement("li");
+            new_field.innerHTML = `
+                <input type="text" name="school-`+ school_count + `" placeholder="School Name" class="input-field">
+            `;
+
+            school_count++;
+
+            document.getElementById("schools").appendChild(new_field);
+        }
+        function addResearcher() {
+            new_field = document.createElement("li");
+            new_field.innerHTML = `
+                <input type="text" name="researcher-name-`+ researcher_count + `" placeholder="Name">
+                <input type="number" name="researcher-school-`+ researcher_count + `" min="1">
+            `;
+
+            researcher_count++;
+
+            document.getElementById("researchers").appendChild(new_field);
+        }
+
+        // turns form data to JSON
+        function process(form) {
+            data = {};
+
+            for (const element of form) {
+                console.log(element)
+            }
+
+
+            console.log(form);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- <form action="javascript: ;" onsubmit="process(this)"> -->
+    <form action="/project-submit" method="post" enctype="multipart/form-data">
+        <label for="project-title">Project Title</label><br>
+        <input type="text" id="project-title" name="project-title" value=""><br>
+        <br>
+
+        <label for="schools">Schools</label>
+        <ol id="schools">
+            <!-- Start with Peddie -->
+            <li><input type="text" name="school-1" placeholder="School Name" class="input-field"
+                    value="Peddie School, Hightstown NJ"></li>
+        </ol>
+        <button onclick="addSchool()" type="button">Add School</button> <br>
+        <br>
+
+        <label for="researchers">Researchers</label><br>
+        <ul id="researchers" style="list-style: none;"> <!-- Generate in here --> </ul>
+        <button onclick="addResearcher()" type="button">Add Researcher</button> <br>
+        <br>
+
+        <label for="abstract">Abstract</label><br>
+        <textarea name="abstract" id="abstract" cols="30" rows="10"></textarea><br>
+        <br>
+
+        <label for="poster">Poster</label><br>
+        <input type="file" name="poster" id="poster" accept="image/png, image/jpeg"><br>
+        <br>
+
+        <label for="paper">Paper</label><br>
+        <input type="file" name="paper" id="paper" accept="application/pdf"><br>
+        <br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        addResearcher(); // start with 1 researcher
+    </script>
+</body>
+
+</html>
